@@ -12,7 +12,10 @@ class AddToCart extends Component
             onClick(e); 
         }
         checkoutDispatch({
-            type: 'addToCart'
+            type: 'addToCart',
+            params: { 
+                form: e.currentTarget.form 
+            }
         });
     }
 

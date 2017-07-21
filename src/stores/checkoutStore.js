@@ -3,7 +3,7 @@
 import {Map} from 'immutable';
 import {ReduceStore} from 'reduce-flux';
 import get from 'get-object-value';
-import {ajaxDispatch} from 'organism-react-ajax';
+import {ajaxDispatch, formSerialize} from 'organism-react-ajax';
 
 import dispatcher from '../actions/checkoutDispatcher';
 
@@ -17,28 +17,22 @@ class checkoutStore extends ReduceStore
 
   addToCart(state, action)
   {
-        console.log('run addtocart');
-        return state;
-        const src = state.get('src');
+        const form = get(action, ['params', 'form']);
+        if (!form) {
+            console.error('Need assign form');
+        }
+        let formParams = formSerialize(form);
         ajaxDispatch({
             type: 'ajaxPost',
             params: {
-               url: src+'action',
-               query: {
-                   pvid: pvid,
-                   url: document.URL,
-                   params: action.params
-               },
-               callback: (json,text) => {
-                    const element = state.get('element');
-                    const iframe = get(element,['iframe']);
-                    if (iframe) {
-                        iframe.appendHtml(text);
-                    } 
-               },
-               disableProgress: true 
+                url: form.action,
+                query: formParams,
+                callback: (json)=>{
+                    console.log(json); 
+                },
             }
         });
+        console.log('run addtocart');
         return state;
   }
 
