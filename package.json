@@ -1,6 +1,6 @@
 {
   "name": "pmvc_react_checkout",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "React checkout, shopping cart, etc",
   "repository": "react-atomic/react-atomic-organism",
   "main": "./build/src/index.js",
@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "organism-react-ajax": "*",
+    "organism-react-popup": "*",
     "react-atomic-molecule": "*",
     "reshow": "*",
     "ricon": "*"

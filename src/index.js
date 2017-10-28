@@ -8,4 +8,4 @@ export CartStatus from '../ui/organisms/CartStatus';
 export checkoutStore from './stores/checkoutStore';
 
 // Dispatch
-export {checkoutDispatch} from './actions/checkoutDispatcher';
+export {checkoutDispatch} from './checkoutDispatcher';

@@ -1,7 +1,8 @@
 import React, {Component} from 'react'; 
 import { Button, SemanticUI } from 'react-atomic-molecule'; 
+import get from 'get-object-value';
 
-import {checkoutDispatch} from '../../src/actions/checkoutDispatcher';
+import {checkoutDispatch} from '../../src/checkoutDispatcher';
 
 class AddToCart extends Component
 {
@@ -19,10 +20,17 @@ class AddToCart extends Component
         });
     }
 
+    componentDidMount()
+    {
+        this.setState({type: 'button'});
+    }
+
     render()
     {
+        const type = get(this, ['state', 'type'], 'submit');
         return (
             <Button
+                type={type}
                 onClick={this.handleClick}
             >
                 Add to cart

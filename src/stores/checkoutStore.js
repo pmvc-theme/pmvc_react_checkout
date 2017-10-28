@@ -1,11 +1,15 @@
 'use strict';
 
 import {Map} from 'immutable';
-import {ReduceStore} from 'reduce-flux';
+import {ReduceStore} from 'reshow';
 import get from 'get-object-value';
 import {ajaxDispatch, formSerialize} from 'organism-react-ajax';
+import {
+    AlertsNotifier,
+    popupDispatch
+} from 'organism-react-popup';
 
-import dispatcher from '../actions/checkoutDispatcher';
+import dispatcher from '../checkoutDispatcher';
 
 class checkoutStore extends ReduceStore
 {
@@ -28,7 +32,8 @@ class checkoutStore extends ReduceStore
                 url: form.action,
                 query: formParams,
                 callback: (json)=>{
-                    console.log(json); 
+                    const error = get(json, ['data', 'lastError']);
+                    popupDispatch();
                 },
             }
         });
